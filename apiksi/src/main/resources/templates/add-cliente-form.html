@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Adicionar Clientes</title>
+		<link rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+
+	</head>
+	
+	<body>
+		
+		<div class="container">
+			<h3>Adicionar Novo Cliente</h3>
+			<hr/>
+			
+			<form th:action="@{/saveCliente}" th:object="${cliente}" method="POST">
+				
+				<input type="text" th:field="*{nome}" class="form-control col-4 mb-4" placeholder="Digite o Name" />
+				
+				<input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Digite o email" />
+				
+				<input type="text" th:field="*{cpf}" class="form-control col-4 mb-4" placeholder="Digite o cpf" />
+				
+				<button type="submit" class="btn btn-primary col-2">Salvar</button>
+				<input type="hidden" th:field="*{id}" />
+				
+			</form>
+			<hr/>
+			<a th:href="@{/list}">Voltar para a Lista de Clientes</a>		
+	
+		</div>
+		
+
+	</body>
+	
+</html>

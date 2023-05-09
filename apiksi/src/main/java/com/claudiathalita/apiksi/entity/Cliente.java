@@ -1,4 +1,4 @@
-package com.claudiathalita.apiksi;
+package com.claudiathalita.apiksi.entity;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,38 +7,40 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="tbl_cliente")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	private String nome;
 	private String email;
+	private Long cpf;
 	
 	public Cliente() {
 		
 	}
 
-	public Cliente(Integer id, String nome, String email) {
+	public Cliente(Long id, String nome, String email, Long cpf) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.cpf = cpf;
 	}
 
-	public Integer getId() {
+
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,6 +58,13 @@ public class Cliente implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Long getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
 	}
 
 	@Override

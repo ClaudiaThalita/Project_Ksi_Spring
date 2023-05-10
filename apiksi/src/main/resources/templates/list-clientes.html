@@ -17,7 +17,7 @@
 		
 		<div class="container">
 		
-			<h3>List Clientes</h3>
+			<h3>Lista de Clientes</h3>
 			
 			<hr/>
 			<a th:href="@{/addClienteForm}" class="btn btn-primary">Adicionar Cliente</a>
@@ -29,6 +29,7 @@
 						<th>Name</th>
 						<th>Email</th>
 						<th>Cpf</th>
+						<th>Ação</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,6 +37,11 @@
 				        <td th:text="${cliente.nome}">
 				        <td th:text="${cliente.email}">
 				        <td th:text="${cliente.cpf}">
+				        <td>
+							<a th:href="@{/showUpdateForm(clienteId=${cliente.id})}" class="btn btn-info">Update</a>
+
+							<a th:href="@{/deleteCliente(clienteId=${cliente.id})}" class="btn btn-danger ml-2">Delete</a>
+						</td>
 						
 					</tr>
 				</tbody>

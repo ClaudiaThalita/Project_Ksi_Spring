@@ -1,23 +1,32 @@
 package com.claudiathalita.apiksi.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.claudiathalita.apiksi.entity.Cliente;
+import com.claudiathalita.apiksi.entity.Json;
 import com.claudiathalita.apiksi.repository.ClienteRepository;
+import com.claudiathalita.apiksi.repository.JsonRepository;
 
 @Controller
 public class ClienteController {
 
 	@Autowired
 	private ClienteRepository repo;
+	
+	@Autowired
+	private JsonRepository repojson;
 	
 	@GetMapping({"/clientes","/","/list"})
 	public ModelAndView showClientes() {
@@ -51,6 +60,26 @@ public class ClienteController {
 		repo.deleteById(clienteId);
 		return "redirect:/list";
 	}
+	@GetMapping("/jsonClient")
+	@ResponseBody
+	public Json jsonClient() {
+	    Json json = new Json();
+	    json.setAccepted_devices(new String[] { "Google Pixel 2XL (8.1.0)" });
+	    json.setRejected_devices(new String[0]); 
+	    return json;
+	}
+
+	
+	@GetMapping("/jsonCliente")
+	@ResponseBody
+	public ModelAndView jsonClientes() {
+		ModelAndView mav = new ModelAndView("list-clientes");
+		List<Json> json = repojson.findAll();
+		mav.addObject("json", json);
+	    return mav;
+	}
+
+
 }
 
 
